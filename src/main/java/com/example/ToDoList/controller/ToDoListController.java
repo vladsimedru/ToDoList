@@ -47,5 +47,4 @@ public class ToDoListController {
     public ResponseEntity<List<TaskResponseDto>> getTasksByToDoListId(@PathVariable Long id) {
         return ResponseEntity.ok(taskService.getTasksByToDoListId(id));
     }
-
 }

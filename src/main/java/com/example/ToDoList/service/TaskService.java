@@ -24,7 +24,7 @@ public class TaskService {
     private final TaskMapper taskMapper;
 
     public Long addTask(Long id, AddTaskDto addTaskDto) throws BusinessException {
-        ToDoList toDoList = toDoListRepository.findById(id).orElseThrow(()->new BusinessException(404,"To Do List NOT Found"));
+        ToDoList toDoList = toDoListRepository.findById(id).orElseThrow(() -> new BusinessException(404, "To Do List NOT Found"));
         Task task = new Task();
         task.setStatus(false);
         task.setDescription(addTaskDto.getDescription());

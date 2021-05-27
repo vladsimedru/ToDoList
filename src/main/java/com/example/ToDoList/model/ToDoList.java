@@ -23,4 +23,6 @@ public class ToDoList {
 
     @OneToMany(mappedBy = "toDoList", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Task> tasks = new HashSet<>();
+
+    private String color;
 }
