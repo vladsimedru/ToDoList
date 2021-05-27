@@ -3,6 +3,7 @@ package com.example.ToDoList.service;
 import com.example.ToDoList.exception.BusinessException;
 import com.example.ToDoList.mapper.ToDoListMapper;
 import com.example.ToDoList.model.ToDoList;
+import com.example.ToDoList.model.dto.AddTaskDto;
 import com.example.ToDoList.model.dto.AddToDoListDto;
 import com.example.ToDoList.model.response.AddToDoListResponseDto;
 import com.example.ToDoList.model.response.ToDoListResponseDto;
@@ -40,4 +41,5 @@ public class ToDoListService {
         ToDoList toDoList = toDoListRepository.findById(id).orElseThrow(() -> new BusinessException(404, "To Do List NOT Found"));
         return toDoListMapper.entityToDto(toDoList);
     }
+
 }
