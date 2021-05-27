@@ -38,6 +38,7 @@ public class ToDoListController {
         return ResponseEntity.ok(toDoListService.getToDoList(id));
     }
 
+
     @PostMapping("/{id}/task")
     public ResponseEntity<Long> addTask(@PathVariable Long id, @RequestBody AddTaskDto addTaskDto) throws BusinessException {
         return ResponseEntity.created(RequestUtils.getLocation(taskService.addTask(id, addTaskDto))).build();
