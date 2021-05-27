@@ -4,11 +4,9 @@ import com.example.ToDoList.exception.BusinessException;
 import com.example.ToDoList.mapper.ToDoListMapper;
 import com.example.ToDoList.model.ToDoList;
 import com.example.ToDoList.model.dto.AddToDoListDto;
-import com.example.ToDoList.model.response.AddToDoListResponseDto;
 import com.example.ToDoList.model.response.ToDoListResponseDto;
 import com.example.ToDoList.repository.ToDoListRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -40,4 +38,5 @@ public class ToDoListService {
         ToDoList toDoList = toDoListRepository.findById(id).orElseThrow(() -> new BusinessException(404, "To Do List NOT Found"));
         return toDoListMapper.entityToDto(toDoList);
     }
+
 }
