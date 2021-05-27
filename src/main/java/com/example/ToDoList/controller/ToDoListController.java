@@ -1,10 +1,8 @@
 package com.example.ToDoList.controller;
 
 import com.example.ToDoList.exception.BusinessException;
-import com.example.ToDoList.model.dto.AddTaskDto;
-import com.example.ToDoList.model.dto.AddToDoListDto;
-import com.example.ToDoList.model.response.TaskResponseDto;
-import com.example.ToDoList.model.response.ToDoListResponseDto;
+import com.example.ToDoList.service.dto.TaskDto;
+import com.example.ToDoList.service.dto.ToDoListDto;
 import com.example.ToDoList.service.TaskService;
 import com.example.ToDoList.service.ToDoListService;
 import com.example.ToDoList.utils.RequestUtils;
@@ -23,29 +21,56 @@ public class ToDoListController {
 
     private final TaskService taskService;
 
+    /**
+     * Add a ToDoList object
+     * @param toDoListDto
+     * @return 201 created
+     */
     @PostMapping
-    public ResponseEntity<Long> addToDoList(@RequestBody AddToDoListDto addToDoListDto) {
-        return ResponseEntity.created(RequestUtils.getLocation(toDoListService.addToDoList(addToDoListDto))).build();
+    public ResponseEntity<Long> addToDoList(@RequestBody ToDoListDto toDoListDto) {
+        return ResponseEntity.created(RequestUtils.getLocation(toDoListService.addToDoList(toDoListDto))).build();
     }
 
+    /**
+     * get all ToDoLists
+     * @return A list of ToDoListDto
+     */
     @GetMapping
-    public ResponseEntity<List<ToDoListResponseDto>> getAllToDoLists() {
+    public ResponseEntity<List<ToDoListDto>> getAllToDoLists() {
         return ResponseEntity.ok(toDoListService.getAllToDoLists());
     }
 
+    /**
+     * get a list by ToDoListId
+     * @param id
+     * @return a list of ToDoListDto
+     * @throws BusinessException
+     */
     @GetMapping("/{id}")
-    public ResponseEntity<ToDoListResponseDto> getToDoList(@PathVariable Long id) throws BusinessException {
+    public ResponseEntity<ToDoListDto> getToDoList(@PathVariable Long id) throws BusinessException {
         return ResponseEntity.ok(toDoListService.getToDoList(id));
     }
 
 
+    /**
+     * Add a task to a ToDoList
+     * @param id
+     * @param taskDto
+     * @return 201 created
+     * @throws BusinessException
+     */
     @PostMapping("/{id}/task")
-    public ResponseEntity<Long> addTask(@PathVariable Long id, @RequestBody AddTaskDto addTaskDto) throws BusinessException {
-        return ResponseEntity.created(RequestUtils.getLocation(taskService.addTask(id, addTaskDto))).build();
+    public ResponseEntity<Long> addTask(@PathVariable Long id, @RequestBody TaskDto taskDto) throws BusinessException {
+        return ResponseEntity.created(RequestUtils.getLocation(taskService.addTask(id, taskDto))).build();
     }
 
+    /**
+     * get tasks by ToDoListId
+     * @param id
+     * @return a list of TaskDto
+     */
     @GetMapping("/{id}/tasks")
-    public ResponseEntity<List<TaskResponseDto>> getTasksByToDoListId(@PathVariable Long id) {
+    public ResponseEntity<List<TaskDto>> getTasksByToDoListId(@PathVariable Long id) {
         return ResponseEntity.ok(taskService.getTasksByToDoListId(id));
     }
 }

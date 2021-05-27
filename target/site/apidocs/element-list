@@ -1,0 +1,9 @@
+com.example.ToDoList
+com.example.ToDoList.controller
+com.example.ToDoList.exception
+com.example.ToDoList.mapper
+com.example.ToDoList.model
+com.example.ToDoList.repository
+com.example.ToDoList.service
+com.example.ToDoList.service.dto
+com.example.ToDoList.utils
