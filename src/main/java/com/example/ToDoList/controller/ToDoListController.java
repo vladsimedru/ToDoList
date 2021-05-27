@@ -34,4 +34,5 @@ public class ToDoListController {
     public ResponseEntity<ToDoListResponseDto> getToDoList(@PathVariable Long id) throws BusinessException {
         return ResponseEntity.ok(toDoListService.getToDoList(id));
     }
+    
 }
