@@ -9,10 +9,12 @@ import com.example.ToDoList.model.response.TaskResponseDto;
 import com.example.ToDoList.repository.TaskRepository;
 import com.example.ToDoList.repository.ToDoListRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 @AllArgsConstructor
 public class TaskService {
     private final ToDoListRepository toDoListRepository;
