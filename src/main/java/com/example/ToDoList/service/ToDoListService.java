@@ -37,4 +37,8 @@ public class ToDoListService {
         ToDoList toDoList = toDoListRepository.findById(toDoListId).orElseThrow(() -> new BusinessException(404, "To Do List NOT Found"));
         return toDoListMapper.entityToDto(toDoList);
     }
+
+    public void deleteToDoListById(Long id) throws BusinessException {
+        toDoListRepository.delete(toDoListRepository.findById(id).orElseThrow(()-> new BusinessException(404,"To Do List NOT Found")));
+    }
 }

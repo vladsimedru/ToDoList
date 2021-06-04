@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/to-do-lists")
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class ToDoListController {
 
     /**
      * Add a ToDoList object
+     *
      * @param toDoListDto
      * @return 201 created
      */
@@ -33,6 +35,7 @@ public class ToDoListController {
 
     /**
      * get all ToDoLists
+     *
      * @return A list of ToDoListDto
      */
     @GetMapping
@@ -42,6 +45,7 @@ public class ToDoListController {
 
     /**
      * get a list by ToDoListId
+     *
      * @param id
      * @return a list of ToDoListDto
      * @throws BusinessException
@@ -51,9 +55,9 @@ public class ToDoListController {
         return ResponseEntity.ok(toDoListService.getToDoList(id));
     }
 
-
     /**
      * Add a task to a ToDoList
+     *
      * @param id
      * @param taskDto
      * @return 201 created
@@ -66,11 +70,22 @@ public class ToDoListController {
 
     /**
      * get tasks by ToDoListId
+     *
      * @param id
      * @return a list of TaskDto
      */
     @GetMapping("/{id}/tasks")
     public ResponseEntity<List<TaskDto>> getTasksByToDoListId(@PathVariable Long id) {
         return ResponseEntity.ok(taskService.getTasksByToDoListId(id));
+    }
+
+    @PutMapping("/task/{id}")
+    public ResponseEntity<TaskDto> updateTaskStatus(@PathVariable Long id, @RequestBody TaskDto taskDto) {
+        return ResponseEntity.ok(taskService.updateTaskStatus(id, taskDto.isStatus()));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteToDoList(@PathVariable Long id) throws BusinessException {
+        toDoListService.deleteToDoListById(id);
     }
 }

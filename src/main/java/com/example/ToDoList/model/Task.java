@@ -17,6 +17,6 @@ public class Task {
 
     private boolean status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private ToDoList toDoList;
 }

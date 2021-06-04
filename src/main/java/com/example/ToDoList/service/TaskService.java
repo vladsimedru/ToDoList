@@ -37,4 +37,11 @@ public class TaskService {
                 .map(taskMapper::entityToDto)
                 .collect(Collectors.toList());
     }
+
+    public TaskDto updateTaskStatus(Long taskId, boolean status) {
+        Task task = taskRepository.getById(taskId);
+        task.setStatus(status);
+        Task updatedTask = taskRepository.save(task);
+        return taskMapper.entityToDto(updatedTask);
+    }
 }
